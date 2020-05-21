@@ -1,0 +1,34 @@
+---
+title: "Week 1"
+author: "Richard"
+date: "5/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Loading and plotting Galton's Data.
+![Github](./Octocat.png) [view mycode](https://github.com/ranalytica/regressions_Model_notes){target="_blank"}
+```{r load}
+library(UsingR)
+library(reshape2)
+library(tidyverse)
+```
+
+```{r}
+data(galton)
+view(galton)
+long<-melt(galton)
+head(long)
+```
+
+```{r}
+breaks <- hist(long$value, plot=FALSE, breaks = "FD")
+g <- ggplot(long, aes(x=value, fill=variable))
+g + geom_histogram(aes(y=..density..),color="black", binwidth = 1, alpha=1)+facet_grid(~variable)+geom_density(alpha=.01)
+
+
+```
+
